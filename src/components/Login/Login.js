@@ -1,3 +1,13 @@
+//Initial useEffect dependencies theory
+
+/* In App.js saw useEffect() with no dependencies, often you need dependencies because 
+you don't just want to run this effect function once when the app starts up, but indeed, 
+after every component re-evaluation, if a certain dependency changed. */
+
+/* An example can be found in the login component. Login component = components -> render 
+the form. */
+/* validation built into the form */
+
 import React, { useState } from "react";
 
 import Card from "../UI/Card/Card";
