@@ -20,7 +20,13 @@ function App() {
     /* Browser = multiple storages we can use, most common = cookies or local storage. */
     /* LocalStorage is mechanism built in the browser, independent of react. When applying 
     it, localStorage = a global object which is available in the browser. */
-    localStorage.setItem();
+    /* Local storage -> application of devTools -> will show key value pair. */
+
+    /* Give setItem() any identifier of our choice, like 'isLoggedIn' -> thats up to me. It 
+    should be a string though. The second argument should also be a string which I store. 
+    For example could be 1 to signal that the user isLoggedIn, or 0 could stand for not logged
+    in. */
+    localStorage.setItem("isLoggedIn", "1");
     setIsLoggedIn(true);
   };
 
