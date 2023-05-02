@@ -36,11 +36,17 @@ const Login = (props) => {
   want to add the parentheses after the names of the functions, but instead you add names -> 
   pointer at functions, so you're essentially adding the functions themselves, NOT the results of said
   functions. */
+
+  /* The function below tells react after every login component function execution, it'll re run this 
+  useEffect function but only if either enteredEmail or enteredPassword changed in the 
+  last re render cycle. */
+
+  /* If neither of the 2 changed, the effect function would not re run. */
   useEffect(() => {
     setFormIsValid(
       enteredEmail.includes("@") && enteredPassword.trim().length > 6
     );
-  }, [setFormIsValid, enteredEmail, enteredPassword]);
+  }, [enteredEmail, enteredPassword]);
 
   /* email validation for every keystroke on the email field */
   const emailChangeHandler = (event) => {
