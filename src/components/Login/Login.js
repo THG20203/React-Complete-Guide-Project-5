@@ -31,11 +31,16 @@ const Login = (props) => {
   /* We need this to run more than once -> not just when the ocmponent was rendered for the first time.
   We want to re-evaluate and rerun this form validation state setting function for every keystroke in 
   email and password change handler. */
+
+  /* Rule for dependencies -> you add as dependencies what you're using in side effect function. Don't
+  want to add the parentheses after the names of the functions, but instead you add names -> 
+  pointer at functions, so you're essentially adding the functions themselves, NOT the results of said
+  functions. */
   useEffect(() => {
     setFormIsValid(
       enteredEmail.includes("@") && enteredPassword.trim().length > 6
     );
-  }, []);
+  }, [setFormIsValid, enteredEmail, enteredPassword]);
 
   /* email validation for every keystroke on the email field */
   const emailChangeHandler = (event) => {
