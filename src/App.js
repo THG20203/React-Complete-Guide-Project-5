@@ -5,6 +5,10 @@ import Home from "./components/Home/Home";
 import MainHeader from "./components/MainHeader/MainHeader";
 
 function App() {
+  /* When app restarts, the app component function runs again, so we could reach out to 
+  localStorage, call getItem(), and search for isLoggedIn and it'll return the items stored there. */
+  const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   /* Where can we utilise USE EFFECT? Would be good to store data somewhere, where it persists 
   the reload, even better than that -> we want to make sure whenever this app does start, 
@@ -26,6 +30,12 @@ function App() {
     should be a string though. The second argument should also be a string which I store. 
     For example could be 1 to signal that the user isLoggedIn, or 0 could stand for not logged
     in. */
+    /* We can add in the localStorage object with setItem function within the loginHandler function,
+    because its a function that executes only when the user clicks the button which is exactly 
+    when we want to store something. */
+
+    /* If page refreshed etc, want to check if in localStorage we still have key value pair?
+    When App restarts, the app components runs again. */
     localStorage.setItem("isLoggedIn", "1");
     setIsLoggedIn(true);
   };
