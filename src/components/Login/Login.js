@@ -21,6 +21,7 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  /* email validation for every keystroke on the email field */
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
@@ -29,6 +30,7 @@ const Login = (props) => {
     );
   };
 
+  /* password validation for every keystroke on the password */
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
 
@@ -37,6 +39,9 @@ const Login = (props) => {
     );
   };
 
+  /* validateEmailHandler and validatePasswordHandler - set email and password as valid whenever 
+  the inputs blur -> so whenever they loose focus. So that -> they are also makred as invlaid if I
+  click into email input box enter nothing for example and click somewhere else. */
   const validateEmailHandler = () => {
     setEmailIsValid(enteredEmail.includes("@"));
   };
