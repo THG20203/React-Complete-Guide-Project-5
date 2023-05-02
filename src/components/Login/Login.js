@@ -8,7 +8,7 @@ after every component re-evaluation, if a certain dependency changed. */
 the form. */
 /* validation built into the form */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
@@ -21,22 +21,30 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  /* In email and password change handler, we could utilise useEffect to have one place 
+  where we mark the form as valid or invalid with one logic - which should trigger, whevever either 
+  the email or password changed. Thats where we will need an extra dependency. */
+
+  /* So after state definitions, call useEffect pass the first function for email change handler to 
+  it and have our array of dependencies again as the second argument of the useEffect() function. */
+
+  /* We need this to run more than once -> not just when the ocmponent was rendered for the first time.
+  We want to re-evaluate and rerun this form validation state setting function for every keystroke in 
+  email and password change handler. */
+  useEffect(() => {
+    setFormIsValid(
+      enteredEmail.includes("@") && enteredPassword.trim().length > 6
+    );
+  }, []);
+
   /* email validation for every keystroke on the email field */
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
-
-    setFormIsValid(
-      event.target.value.includes("@") && enteredPassword.trim().length > 6
-    );
   };
 
   /* password validation for every keystroke on the password */
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
-
-    setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes("@")
-    );
   };
 
   /* validateEmailHandler and validatePasswordHandler - set email and password as valid whenever 
