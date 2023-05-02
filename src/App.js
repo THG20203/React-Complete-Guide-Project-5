@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
@@ -12,17 +12,26 @@ function App() {
   enter details. */
 
   // AFTER we call USE STATE
-  /* When app restarts, the app component function runs again, so we could reach out to 
-  localStorage, call getItem(), and search for isLoggedIn and it'll return the items stored there. */
-  const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
+  /* Call useEffect. First argument is function -> for example an anonymous function. Second
+  argument is an array dependencies. */
 
-  /* check if storedUserLoggedInInformation is equal to 1 */
-  if (storedUserLoggedInInformation === "1") {
-    /* if it is equal to 1, could call setIsLoggedIn and set as to true. With this, 
+  /* With useEffect, can call the function storedUserLoggedInformation because this is happening 
+  AFTER every component re-evalution, avoiding the loop of code going round and round. 
+  The storedUserLoggedInInformation will ONLY run if the dependencies (second argument within
+  useState) changed */
+  useEffect(() => {
+    /* When app restarts, the app component function runs again, so we could reach out to 
+    localStorage, call getItem(), and search for isLoggedIn and it'll return the items stored there. */
+    const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
+
+    /* check if storedUserLoggedInInformation is equal to 1 */
+    if (storedUserLoggedInInformation === "1") {
+      /* if it is equal to 1, could call setIsLoggedIn and set as to true. With this, 
     set the user to login, even without the loginHandler function being triggered, because
     we know that the user is logged in. */
-    setIsLoggedIn(true);
-  }
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const loginHandler = (email, password) => {
     // We should of course check email and password
