@@ -78,8 +78,12 @@ const Login = (props) => {
     component is removed. It also does not run before the FIRST side effect function execution. */
     return () => {
       /* Can use identifier to clear the timer, with the built in clearTimeOut function, which is built into 
-    the browser. Want to run it in my cleanup function, running clearTimeout and passing the identifier of 
-    this timeout to it. This makes sure that whenever the cleanup function runs, */
+      the browser. */
+      /* Want to run it in my cleanup function, running clearTimeout and passing the identifier of 
+      this timeout to it. This makes sure that whenever the cleanup function runs, I clear the timeout that 
+      was set before this cleanup function ran - so in the last side effect function execution, so that 
+      when the next side effect execution is due, we are able to set a new timer. */
+      /* So we clear the last timer before we set a new one. */
       console.log("CLEANUP");
       clearTimeout(identifier);
     };
