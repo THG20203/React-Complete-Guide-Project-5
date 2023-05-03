@@ -21,6 +21,12 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  /* New useEffect call -> useEffect call runs after every component render cycle. Not before it 
+  and not during it, but after it */
+  useEffect(() => {
+    console.log("EFFECT RUNNING");
+  });
+
   /* In email and password change handler, we could utilise useEffect to have one place 
   where we mark the form as valid or invalid with one logic - which should trigger, whevever either 
   the email or password changed. Thats where we will need an extra dependency. */
