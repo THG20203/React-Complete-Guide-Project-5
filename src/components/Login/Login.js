@@ -51,14 +51,38 @@ const Login = (props) => {
     /* Instead, might want to collect a certain amount of keystrokes, or simply wait for a pause of a 
     certain time duration after a keystroke. Logic of waiting for a pause? User seems to be done -> 
     lets see if its valid. */
+
     /* This is a technique known as DEBOUNCING. We want to debounce the user input - we want to make 
     sure we're not doing something with it on every keystroke, but once the user has made a pause 
     during typing. */
-    /* With useEffect() this is easy -> use setTimeout() */
-    setTimeout();
-    setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
-    );
+    /* With useEffect() this is easy -> use setTimeout() -> function built into the browser to wait for 500 
+    milliseconds until I execute a function. 500 milliseconds is the second parameter, first parameter
+    is the function. In the function (parameter 1) might want to check form validity */
+
+    /* Now we can use the fact setTimeout() actually returns a handler lets say, or actually, an identifier 
+    for the timer that was set.  */
+    const identifier = setTimeout(() => {
+      console.log("Checking form validity");
+      setFormIsValid(
+        enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      );
+    }, 500);
+
+    /* Clean up function -> anonymous arrow function created below. This will run as a clean up process 
+    before useEffect executes this function next time. */
+    /* Whenever the useEffect function above runs, before it runs, except for the very first time when 
+    it runs, this clean up function will run. */
+    /* In addition, the clean up function will run whenever the component I'm specifying the effect in 
+    unmounts from the DOM. So whenever the component is re used.  */
+    /* So clean up function runs before every new side effect function execution and before the 
+    component is removed. It also does not run before the FIRST side effect function execution. */
+    return () => {
+      /* Can use identifier to clear the timer, with the built in clearTimeOut function, which is built into 
+    the browser. Want to run it in my cleanup function, running clearTimeout and passing the identifier of 
+    this timeout to it. This makes sure that whenever the cleanup function runs, */
+      console.log("CLEANUP");
+      clearTimeout(identifier);
+    };
   }, [enteredEmail, enteredPassword]);
 
   /* email validation for every keystroke on the email field */
