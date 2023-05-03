@@ -43,6 +43,19 @@ const Login = (props) => {
 
   /* If neither of the 2 changed, the effect function would not re run. */
   useEffect(() => {
+    /* Sometimes need to use useEffect() for some cleanup work. Here we are executing this function 
+    (setFormIsValid) on every keystroke. */
+    /* We are updating state -> which might not be ideal, because it triggers another function 
+    component execution, and that React again needs to check whether it needs to change soemthing 
+    in the DOM. Maybe not something we want to do for every keystroke? */
+    /* Instead, might want to collect a certain amount of keystrokes, or simply wait for a pause of a 
+    certain time duration after a keystroke. Logic of waiting for a pause? User seems to be done -> 
+    lets see if its valid. */
+    /* This is a technique known as DEBOUNCING. We want to debounce the user input - we want to make 
+    sure we're not doing something with it on every keystroke, but once the user has made a pause 
+    during typing. */
+    /* With useEffect() this is easy -> use setTimeout() */
+    setTimeout();
     setFormIsValid(
       enteredEmail.includes("@") && enteredPassword.trim().length > 6
     );
