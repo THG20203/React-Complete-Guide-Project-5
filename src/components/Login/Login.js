@@ -22,7 +22,8 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   /* New useEffect call -> useEffect call runs after every component render cycle. Not before it 
-  and not during it, but after it */
+  and not during it, but after it - including the first tome this component was mounted and rendered,
+  not for any subsequent re render cycle. */
   useEffect(() => {
     console.log("EFFECT RUNNING");
   });
