@@ -21,6 +21,16 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  //USEREDUCER
+  /* useReducer is another built in hook and it will help us with state management. Bit like useState,
+  but with more capabilities -> especially useful for more ocmplex state. */
+  /* Sometimes have more complex state -> for example multiple States that kind of belong together.
+  use cases for useReducer -> if its got multiple states, multiple ways of changing it or dependencies 
+  to other states. */
+  /* In the cases useState() then often becomes hard or error prone to use - it's easy to write bad, 
+  inefficient or buggy code in such scenarios */
+
+  //USEEFECT
   /* In email and password change handler, we could utilise useEffect to have one place 
   where we mark the form as valid or invalid with one logic - which should trigger, whevever either 
   the email or password changed. Thats where we will need an extra dependency. */
