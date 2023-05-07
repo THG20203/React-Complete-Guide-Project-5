@@ -26,6 +26,10 @@ const Login = (props) => {
   /* useReducer() can be used as a replacement for useState() if you need 'more powerful state 
   management'. useReducer() = more complex to use, requires a bit more set up. So for a lot of scenarios,
   for the majority -> useState() should be used. But are cases where using useReducer() is useful. */
+  /* Explanation: You could use function form of useState only when the current state is dependent on
+  the previous state of the same state. */
+  /* But in cases where the current state depends on the previous state of other states you could use 
+  useReducer to manage state. */
 
   /* Login.js managing a couple of state snapshots -> theres some related state within this. All the 
   enteredEmail, emailIsValid, enteredPassword etc = one overall big state -> describes the overall form 
