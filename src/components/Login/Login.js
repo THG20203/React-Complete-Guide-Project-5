@@ -21,20 +21,6 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
-  /* New useEffect call -> useEffect call runs after every component render cycle. Not before it 
-  and not during it, but after it - including the first tome this component was mounted and rendered,
-  not for any subsequent re render cycle. */
-  /* Alternatively, we add a dependency like entered email or entered password. Now, the function re 
-  runs whenever the component was re evaluated and this state (state being enteredPassword) has changed. */
-  /* We also have the clean up function we can return -> this cleanup function runs before this state 
-  function as a whole runs, but not before the first time it runs. */
-  useEffect(() => {
-    console.log("EFFECT RUNNING");
-    return () => {
-      console.log("EFFECT CLEAN UP");
-    };
-  }, [enteredPassword]);
-
   /* In email and password change handler, we could utilise useEffect to have one place 
   where we mark the form as valid or invalid with one logic - which should trigger, whevever either 
   the email or password changed. Thats where we will need an extra dependency. */
